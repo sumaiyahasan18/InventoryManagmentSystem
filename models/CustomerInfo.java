@@ -3,6 +3,7 @@ package models;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class CustomerInfo {
     private String customer_name;
@@ -47,5 +48,13 @@ public class CustomerInfo {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static void createFromInput(Scanner scanner) {
+        System.out.println("Creating customer");
+        System.out.println("Customer Name");
+        String name = scanner.nextLine();
+        new CustomerInfo(name);
+
     }
 }

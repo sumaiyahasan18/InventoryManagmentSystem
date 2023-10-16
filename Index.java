@@ -1,7 +1,9 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import models.Cart;
 import models.Company;
+import models.CustomerInfo;
 import models.Inventory;
 import models.Product;
 import models.Purchase_log;
@@ -19,7 +21,8 @@ public class Index {
         System.out.println("6 x: View Product purchases of id x");
         System.out.println("7: Add product to inventory");
         System.out.println("8: Create inventory");
-
+        System.out.println("9: Add products to cart");
+        System.out.println("10: Create user");
         int flag = scanner.nextInt();
         scanner.nextLine();
         switch (flag) {
@@ -60,6 +63,12 @@ public class Index {
                 String inventoryLocation = scanner.nextLine();
                 Inventory i = new Inventory(inventoryLocation);
                 i.printInfo();
+                break;
+            case 9:
+                Cart.browseAndAddToCart(scanner);
+                break;
+            case 10:
+                CustomerInfo.createFromInput(scanner);
                 break;
             default:
                 break;

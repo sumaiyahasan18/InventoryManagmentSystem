@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Product {
-    private String name;
+    public String name;
     int id;
-    private int company_id;
-    private int retail_price;
-    private int wholesale_Price;
-    private int wholesale_units;
+    public int company_id;
+    public int retail_price;
+    public int wholesale_Price;
+    public int wholesale_units;
     public static String dbPath = "/data/product.csv";
     public static int counter = Model.count(dbPath);
 
@@ -84,7 +84,7 @@ public class Product {
 
     public static Product findById(int _id) {
         try {
-            FileReader fileReader = new FileReader(Model.base + Company.dbPath);
+            FileReader fileReader = new FileReader(Model.base + Product.dbPath);
 
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
