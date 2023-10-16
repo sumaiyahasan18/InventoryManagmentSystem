@@ -8,10 +8,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Model {
+    public static String base = "/home/shahriarkabir/Desktop/InventoryManagmentSystem/models";
+
     public static void storedata(String content, String dbPath) {
         try {
             FileWriter fileWriter = new FileWriter(
-                    "/home/shahriarkabir/Desktop/InventoryManagmentSystem/models/data/company.csv", true);
+                    Model.base + dbPath, true);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
             bufferedWriter.write(content);
@@ -27,7 +29,7 @@ public class Model {
         int lineCount = 0;
 
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(dbPath));
+            BufferedReader reader = new BufferedReader(new FileReader(Model.base + dbPath));
             String line;
 
             while ((line = reader.readLine()) != null) {
@@ -44,7 +46,7 @@ public class Model {
 
     public static ArrayList<String> getLines(String dbPath) {
         ArrayList<String> lines = new ArrayList<String>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(dbPath))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(Model.base + dbPath))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 lines.add(line);
@@ -56,7 +58,7 @@ public class Model {
     }
 
     public static void writeData(String dbPath, ArrayList<String> lines) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(dbPath))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(Model.base + dbPath))) {
             for (String line : lines) {
                 writer.write(line);
                 writer.newLine();

@@ -7,7 +7,7 @@ public class Purchase_log {
     public int units;
     public int total_price;
     public String date;
-    public static String dbPath = "./data/purchase_log.csv";
+    public static String dbPath = "/data/purchase_log.csv";
     public int companyId;
 
     private Purchase_log(int productId, int companyId, int units, int total_price, String date) {

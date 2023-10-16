@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Sales_log {
     int productId, amount;
     String date;
-    public static String dbPath = "./data/sales_log.csv";
+    public static String dbPath = "/data/sales_log.csv";
 
     private Sales_log(int _productId, int _amount, String _date) {
         this.productId = _productId;

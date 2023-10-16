@@ -41,7 +41,7 @@ public class Index {
                 name = scanner.nextLine();
                 System.out.println("Company location");
                 String location = scanner.nextLine();
-                Company.create(name, location);
+                Company.create(name, location).printDetails();
                 break;
             default:
                 break;

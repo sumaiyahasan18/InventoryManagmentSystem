@@ -8,7 +8,7 @@ public class Inventory {
 
     private int id;
     private String location;
-    public static String dbPath = "./data/inventory.csv";
+    public static String dbPath = "/data/inventory.csv";
     public static int counter = Model.count(Inventory.dbPath);
 
     public String toString() {
@@ -28,7 +28,7 @@ public class Inventory {
 
     public static Inventory findById(int _id) {
         try {
-            FileReader fileReader = new FileReader(Company.dbpath);
+            FileReader fileReader = new FileReader(Company.dbPath);
 
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 

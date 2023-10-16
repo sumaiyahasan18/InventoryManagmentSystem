@@ -3,18 +3,41 @@ package models;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Company {
-    public static String dbpath = "./data/company.csv";
+    public static String dbPath = "/data/company.csv";
     private String name;
     private int id;
     private String location;
-    public static int count = 0;
+    public static int count = Model.count(dbPath);
 
     public Company(String name, String location) {
         this.name = name;
-        this.id = Company.count + 1;
+        this.id = ++Company.count;
         this.location = location;
+    }
+
+    public void printDetails() {
+        System.out.println("Id: " + this.id);
+        System.out.println("Name: " + this.name);
+        System.out.println("Location: " + this.location);
+
+    }
+
+    private Company(String line) {
+        String[] contents = line.split(",");
+        this.id = Integer.parseInt(contents[0]);
+        this.name = contents[1];
+        this.location = contents[2];
+    }
+
+    public static void showProducts() {
+        ArrayList<String> contents = Model.getLines(Company.dbPath);
+        for (String line : contents) {
+            Company p = new Company(line);
+            p.printDetails();
+        }
     }
 
     private Company(int id, String name, String location) {
@@ -30,7 +53,7 @@ public class Company {
     }
 
     private void store() {
-        Model.storedata(this + "", Company.dbpath);
+        Model.storedata(this + "", Company.dbPath);
 
     }
 
@@ -40,7 +63,7 @@ public class Company {
 
     public static Company searchById(int _id) {
         try {
-            FileReader fileReader = new FileReader(Company.dbpath);
+            FileReader fileReader = new FileReader(Company.dbPath);
 
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 

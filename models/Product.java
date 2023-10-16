@@ -12,7 +12,7 @@ public class Product {
     private int retail_price;
     private int wholesale_Price;
     private int wholesale_units;
-    public static String dbPath = "./data/product.csv";
+    public static String dbPath = "/data/product.csv";
     public static int counter = Model.count(dbPath);
 
     private Product(int id, String name, int company_id, int retail_price, int wholesale_Price, int wholesale_units) {
@@ -83,7 +83,7 @@ public class Product {
 
     public static Product findById(int _id) {
         try {
-            FileReader fileReader = new FileReader(Company.dbpath);
+            FileReader fileReader = new FileReader(Company.dbPath);
 
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 

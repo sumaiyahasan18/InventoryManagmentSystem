@@ -9,7 +9,7 @@ public class Invoice {
     public int id;
     public int customer_id;
     public String date;
-    public static String dbPath = "./data/invoice.csv";
+    public static String dbPath = "/data/invoice.csv";
     public static int counter = Model.count(dbPath);
 
     private Invoice(int id, int customer_id, String date) {
@@ -31,7 +31,7 @@ public class Invoice {
 
     public static Invoice findById(int _id) {
         try {
-            FileReader fileReader = new FileReader(Company.dbpath);
+            FileReader fileReader = new FileReader(Company.dbPath);
 
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 

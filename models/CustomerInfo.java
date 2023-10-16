@@ -7,7 +7,7 @@ import java.io.IOException;
 public class CustomerInfo {
     private String customer_name;
     private int id;
-    public static String dbPath = "./data/customer.csv";
+    public static String dbPath = "/data/customer.csv";
     public static int counter = Model.count(null);
 
     public String toString() {
@@ -27,7 +27,7 @@ public class CustomerInfo {
 
     public static CustomerInfo findById(int _id) {
         try {
-            FileReader fileReader = new FileReader(Company.dbpath);
+            FileReader fileReader = new FileReader(Company.dbPath);
 
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 

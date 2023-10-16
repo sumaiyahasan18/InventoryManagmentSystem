@@ -9,7 +9,7 @@ public class Stock {
     private int product_id;
     private int units;
     private int inventory_id;
-    public static String dbPath = "./data/stock.csv";
+    public static String dbPath = "/data/stock.csv";
 
     public String toString() {
         return this.product_id + "," + this.inventory_id + "," + this.units + "\n";
@@ -24,7 +24,7 @@ public class Stock {
 
     public static Stock find(int productId, int inventoryId) {
         try {
-            FileReader fileReader = new FileReader(Company.dbpath);
+            FileReader fileReader = new FileReader(Company.dbPath);
 
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
