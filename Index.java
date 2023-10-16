@@ -23,13 +23,14 @@ public class Index {
                 System.out.println("Company Id: ");
 
                 int companyId = scanner.nextInt();
-                System.out.println("Company Id: ");
 
-                int retail_price = scanner.nextInt();
                 System.out.println("Retail price: ");
 
-                int wholesale_Price = scanner.nextInt();
+                int retail_price = scanner.nextInt();
                 System.out.println("Wholesale price: ");
+
+                int wholesale_Price = scanner.nextInt();
+                System.out.println("Wholesale units: ");
 
                 int wholesale_units = scanner.nextInt();
                 Product p = new Product(name, companyId, retail_price, wholesale_Price, wholesale_units);

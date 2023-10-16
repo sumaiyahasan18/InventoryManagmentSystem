@@ -28,7 +28,7 @@ public class Inventory {
 
     public static Inventory findById(int _id) {
         try {
-            FileReader fileReader = new FileReader(Company.dbPath);
+            FileReader fileReader = new FileReader(Model.base + Company.dbPath);
 
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 

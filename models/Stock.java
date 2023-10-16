@@ -24,7 +24,7 @@ public class Stock {
 
     public static Stock find(int productId, int inventoryId) {
         try {
-            FileReader fileReader = new FileReader(Company.dbPath);
+            FileReader fileReader = new FileReader(Model.base + Company.dbPath);
 
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 

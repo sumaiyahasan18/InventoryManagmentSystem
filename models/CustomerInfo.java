@@ -27,7 +27,7 @@ public class CustomerInfo {
 
     public static CustomerInfo findById(int _id) {
         try {
-            FileReader fileReader = new FileReader(Company.dbPath);
+            FileReader fileReader = new FileReader(Model.base + Company.dbPath);
 
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 

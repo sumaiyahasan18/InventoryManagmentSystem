@@ -63,7 +63,7 @@ public class Company {
 
     public static Company searchById(int _id) {
         try {
-            FileReader fileReader = new FileReader(Company.dbPath);
+            FileReader fileReader = new FileReader(Model.base + Company.dbPath);
 
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
