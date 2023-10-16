@@ -4,12 +4,13 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Company {
     public static String dbPath = "/data/company.csv";
-    private String name;
-    private int id;
-    private String location;
+    public String name;
+    public int id;
+    public String location;
     public static int count = Model.count(dbPath);
 
     public Company(String name, String location) {
@@ -83,5 +84,14 @@ public class Company {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static void createFromInput(Scanner scanner) {
+        System.out.println("Creating company");
+        System.out.println("Company name");
+        String name = scanner.nextLine();
+        System.out.println("Company location");
+        String location = scanner.nextLine();
+        Company.create(name, location).printDetails();
     }
 }

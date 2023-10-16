@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Stock {
     private int product_id;
@@ -12,7 +13,7 @@ public class Stock {
     public static String dbPath = "/data/stock.csv";
 
     public String toString() {
-        return this.product_id + "," + this.inventory_id + "," + this.units + "\n";
+        return this.product_id + "," + this.inventory_id + "," + this.units;
     }
 
     private Stock(int product_id, int units, int inventory_id) {
@@ -22,9 +23,28 @@ public class Stock {
 
     }
 
+    public static void addToInventory(Scanner scanner) {
+        System.out.println("Adding product:");
+        System.out.println("Product Id: ");
+        int productId = scanner.nextInt();
+        System.out.println("Units: ");
+
+        int units = scanner.nextInt();
+        System.out.println("Inventory Id: ");
+
+        int inventoryId = scanner.nextInt();
+        Stock stock = Stock.find(productId, inventoryId);
+        if (stock != null) {
+            stock.update(units);
+        } else {
+            stock = new Stock(productId, units, inventoryId);
+            Model.storedata(stock.toString() + "\n", dbPath);
+        }
+    }
+
     public static Stock find(int productId, int inventoryId) {
         try {
-            FileReader fileReader = new FileReader(Model.base + Company.dbPath);
+            FileReader fileReader = new FileReader(Model.base + Stock.dbPath);
 
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
@@ -104,7 +124,7 @@ public class Stock {
 
     public static Stock createAndStore(int product_id, int units, int inventory_id) {
         Stock st = new Stock(product_id, units, inventory_id);
-        Model.storedata(st + "", Stock.dbPath);
+        Model.storedata(st + "\n", Stock.dbPath);
         return st;
     }
 }

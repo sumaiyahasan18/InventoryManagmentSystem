@@ -1,7 +1,12 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import models.Company;
+import models.Inventory;
 import models.Product;
+import models.Purchase_log;
+import models.Sales_log;
+import models.Stock;
 
 public class Index {
     public static void main(String[] args) {
@@ -13,36 +18,48 @@ public class Index {
         System.out.println("5 x: View Product sales of id x");
         System.out.println("6 x: View Product purchases of id x");
         System.out.println("7: Add product to inventory");
+        System.out.println("8: Create inventory");
 
         int flag = scanner.nextInt();
         scanner.nextLine();
         switch (flag) {
             case 1:
-                System.out.println("Product name: ");
-                String name = scanner.nextLine();
-                System.out.println("Company Id: ");
-
-                int companyId = scanner.nextInt();
-
-                System.out.println("Retail price: ");
-
-                int retail_price = scanner.nextInt();
-                System.out.println("Wholesale price: ");
-
-                int wholesale_Price = scanner.nextInt();
-                System.out.println("Wholesale units: ");
-
-                int wholesale_units = scanner.nextInt();
-                Product p = new Product(name, companyId, retail_price, wholesale_Price, wholesale_units);
-                p.printInfo();
+                Product.createProduct(scanner);
                 break;
             case 2:
-                System.out.println("Creating company");
-                System.out.println("Company name");
-                name = scanner.nextLine();
-                System.out.println("Company location");
-                String location = scanner.nextLine();
-                Company.create(name, location).printDetails();
+                Company.createFromInput(scanner);
+                break;
+            case 3:
+                Product.showProducts();
+                break;
+            case 4:
+                Product.viewDetails(scanner.nextInt());
+                break;
+            case 5:
+                ArrayList<String> logs = Sales_log.getProductSales(scanner.nextInt());
+                System.out.println("date\tamount");
+                for (String line : logs) {
+                    String[] data = line.split(",");
+                    System.out.println(data[1] + "\t" + data[2]);
+                }
+                break;
+            case 6:
+                ArrayList<String> productPurchases = Purchase_log.getProductPurchases(scanner.nextInt());
+                System.out.println("Company\tamount\tcost\ttime");
+                for (String line : productPurchases) {
+                    String[] data = line.split(",");
+                    System.out.println(data[0] + "\t" + data[3] + "\t" + data[4] + "\t" + data[5]);
+                }
+                break;
+            case 7:
+                Stock.addToInventory(scanner);
+                break;
+            case 8:
+                System.out.println("Creating Invent");
+                System.out.println("Inventory location");
+                String inventoryLocation = scanner.nextLine();
+                Inventory i = new Inventory(inventoryLocation);
+                i.printInfo();
                 break;
             default:
                 break;

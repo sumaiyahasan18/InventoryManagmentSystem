@@ -19,7 +19,7 @@ public class Purchase_log {
     }
 
     public String toString() {
-        return productId + "," + this.companyId + "," + "," + units + "," + total_price + "," + date + "\n";
+        return productId + "," + this.companyId + "," + units + "," + total_price + "," + date + "\n";
     }
 
     public static Purchase_log createAndStore(int productId, int companyId, int units, int total_price, String date) {
@@ -35,7 +35,8 @@ public class Purchase_log {
         for (String item : lines) {
             String[] line = item.split(",");
             if (Integer.parseInt(line[0]) == productId) {
-                taken.add(item);
+                Company c = Company.searchById(Integer.parseInt(line[1]));
+                taken.add(c.name + "," + item);
             }
         }
         return taken;

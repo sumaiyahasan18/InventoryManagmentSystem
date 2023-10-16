@@ -26,6 +26,11 @@ public class Inventory {
         Model.storedata(this.toString(), Inventory.dbPath);
     }
 
+    public void printInfo() {
+        System.out.println("Id: " + this.id);
+        System.out.println("Location: " + this.location);
+    }
+
     public static Inventory findById(int _id) {
         try {
             FileReader fileReader = new FileReader(Model.base + Company.dbPath);

@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Product {
     private String name;
@@ -107,5 +108,25 @@ public class Product {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static void createProduct(Scanner scanner) {
+        System.out.println("Product name: ");
+        String name = scanner.nextLine();
+        System.out.println("Company Id: ");
+
+        int companyId = scanner.nextInt();
+
+        System.out.println("Retail price: ");
+
+        int retail_price = scanner.nextInt();
+        System.out.println("Wholesale price: ");
+
+        int wholesale_Price = scanner.nextInt();
+        System.out.println("Wholesale units: ");
+
+        int wholesale_units = scanner.nextInt();
+        Product p = new Product(name, companyId, retail_price, wholesale_Price, wholesale_units);
+        p.printInfo();
     }
 }
