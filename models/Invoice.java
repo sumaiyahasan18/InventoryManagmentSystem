@@ -3,11 +3,12 @@ package models;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Invoice {
-    private int id;
-    private int customer_id;
-    private String date;
+    public int id;
+    public int customer_id;
+    public String date;
     public static String dbPath = "./data/invoice.csv";
     public static int counter = Model.count(dbPath);
 
@@ -51,6 +52,18 @@ public class Invoice {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static ArrayList<String> getPurchasedList(int invoiceId) {
+        ArrayList<String> lines = Model.getLines(dbPath);
+        ArrayList<String> taken = new ArrayList<String>();
+        for (String item : lines) {
+            String[] line = item.split(",");
+            if (Integer.parseInt(line[1]) == invoiceId) {
+                taken.add(item);
+            }
+        }
+        return taken;
     }
 
 }

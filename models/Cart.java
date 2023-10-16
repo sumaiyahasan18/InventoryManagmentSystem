@@ -32,7 +32,7 @@ public class Cart {
         Invoice invoice = new Invoice(customerId, localizedDate);
         for (int i = 0; i < amounts.size(); i++) {
             Product p = Product.findById(products.get(i));
-            p.purchase(customerId, amounts.get(i));
+            p.purchase(customerId, amounts.get(i), invoice.id, localizedDate);
 
         }
     }

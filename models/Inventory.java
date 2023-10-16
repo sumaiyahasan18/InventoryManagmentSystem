@@ -11,6 +11,10 @@ public class Inventory {
     public static String dbPath = "./data/inventory.csv";
     public static int counter = Model.count(Inventory.dbPath);
 
+    public String toString() {
+        return id + "," + location + "\n";
+    }
+
     private Inventory(int id, String location) {
         this.id = id;
         this.location = location;
@@ -19,7 +23,7 @@ public class Inventory {
     public Inventory(String location) {
         this.location = location;
         this.id = ++Inventory.counter;
-        Model.storedata(this + "", Inventory.dbPath);
+        Model.storedata(this.toString(), Inventory.dbPath);
     }
 
     public static Inventory findById(int _id) {

@@ -3,7 +3,6 @@ package models;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class Company {
     public static String dbpath = "./data/company.csv";
@@ -11,13 +10,11 @@ public class Company {
     private int id;
     private String location;
     public static int count = 0;
-    public static ArrayList<Company> companies = new ArrayList<Company>();
 
     public Company(String name, String location) {
         this.name = name;
         this.id = Company.count + 1;
         this.location = location;
-        Company.companies.add(this);
     }
 
     private Company(int id, String name, String location) {

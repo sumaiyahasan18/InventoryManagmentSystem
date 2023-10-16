@@ -61,6 +61,19 @@ public class Stock {
 
     }
 
+    public static int getProductStock(int productId) {
+        ArrayList<String> lines = Model.getLines(Stock.dbPath);
+        int totalUnits = 0;
+        for (int n = 0; n < lines.size(); n++) {
+            String[] contents = lines.get(n).split(",");
+            if (Integer.parseInt(contents[0]) == productId) {
+                totalUnits += Integer.parseInt(contents[2]);
+
+            }
+        }
+        return totalUnits;
+    }
+
     public static void updateStockOnPurchase(int productId, int amount) {
         ArrayList<String> lines = Model.getLines(Stock.dbPath);
         for (int i = 0; i < lines.size(); i++) {
@@ -86,18 +99,7 @@ public class Stock {
     }
 
     public static Boolean countAvailability(int productId, int amount) {
-        ArrayList<String> lines = Model.getLines(Stock.dbPath);
-        int totalUnits = 0;
-        for (int n = 0; n < lines.size(); n++) {
-            String[] contents = lines.get(n).split(",");
-            if (Integer.parseInt(contents[0]) == productId) {
-                totalUnits += Integer.parseInt(contents[2]);
-                if (totalUnits >= amount) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        return Stock.getProductStock(productId) >= amount;
     }
 
     public static Stock createAndStore(int product_id, int units, int inventory_id) {

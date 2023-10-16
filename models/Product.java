@@ -3,6 +3,7 @@ package models;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Product {
     private String name;
@@ -39,12 +40,45 @@ public class Product {
         Model.storedata(this + "", Product.dbPath);
     }
 
+    private Product(String line) {
+        String[] contents = line.split(",");
+        this.id = Integer.parseInt(contents[0]);
+        this.name = contents[1];
+        this.company_id = Integer.parseInt(contents[2]);
+        this.retail_price = Integer.parseInt(contents[3]);
+        this.wholesale_Price = Integer.parseInt(contents[4]);
+        this.wholesale_units = Integer.parseInt(contents[5]);
+    }
+
     public Boolean checkAvailability(int amount) {
         return Stock.countAvailability(this.id, amount);
     }
 
-    public void purchase(int customerId, int amount) {
+    public static void viewDetails(int _id) {
+        Product p = Product.findById(_id);
+        p.printInfo();
+    }
 
+    public void printInfo() {
+        System.out.println("Id: " + this.id);
+        System.out.println("Name: " + this.name);
+        System.out.println("Retail price: " + this.retail_price);
+        System.out.println("Retail price: " + this.wholesale_Price);
+        System.out.println("Retail price: " + this.wholesale_units);
+        System.out.println("Produced by: " + Company.searchById(this.company_id));
+    }
+
+    public static void showProducts() {
+        ArrayList<String> contents = Model.getLines(dbPath);
+        for (String line : contents) {
+            Product p = new Product(line);
+            p.printInfo();
+        }
+    }
+
+    public void purchase(int customerId, int amount, int invoiceId, String date) {
+        Stock.updateStockOnPurchase(this.id, amount);
+        Sales_log.createAndStore(this.id, amount, date);
     }
 
     public static Product findById(int _id) {

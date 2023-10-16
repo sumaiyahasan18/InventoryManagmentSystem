@@ -3,40 +3,50 @@ package models;
 import java.util.ArrayList;
 
 public class Purchase_log {
-    private int products_id;
-    private int units;
-    private int total_price;
-    private long date;
-    private int invoiceId;
+    public int productId;
+    public int units;
+    public int total_price;
+    public String date;
     public static String dbPath = "./data/purchase_log.csv";
+    public int companyId;
 
-    private Purchase_log(int products_id, int _invoiceId, int units, int total_price, long date) {
-        this.products_id = products_id;
+    private Purchase_log(int productId, int companyId, int units, int total_price, String date) {
+        this.productId = productId;
         this.units = units;
         this.total_price = total_price;
         this.date = date;
-        this.invoiceId = _invoiceId;
+        this.companyId = companyId;
     }
 
     public String toString() {
-        return products_id + "," + this.invoiceId + "," + units + "," + total_price + "," + date + "\n";
+        return productId + "," + this.companyId + "," + "," + units + "," + total_price + "," + date + "\n";
     }
 
-    public static Purchase_log createAndStore(int products_id, int _invoiceId, int units, int total_price, long date) {
+    public static Purchase_log createAndStore(int productId, int companyId, int units, int total_price, String date) {
 
-        Purchase_log purchase_log = new Purchase_log(products_id, _invoiceId, units, total_price, date);
+        Purchase_log purchase_log = new Purchase_log(productId, companyId, units, total_price, date);
         Model.storedata(purchase_log.toString(), dbPath);
         return purchase_log;
     }
 
-    public static ArrayList<String> getPurchasedList(int invoiceId) {
+    public static ArrayList<String> getProductPurchases(int productId) {
         ArrayList<String> lines = Model.getLines(dbPath);
-
         ArrayList<String> taken = new ArrayList<String>();
-
         for (String item : lines) {
             String[] line = item.split(",");
-            if (Integer.parseInt(line[1]) == invoiceId) {
+            if (Integer.parseInt(line[0]) == productId) {
+                taken.add(item);
+            }
+        }
+        return taken;
+    }
+
+    public static ArrayList<String> getCompanywisePurchases(int companyId) {
+        ArrayList<String> lines = Model.getLines(dbPath);
+        ArrayList<String> taken = new ArrayList<String>();
+        for (String item : lines) {
+            String[] line = item.split(",");
+            if (Integer.parseInt(line[1]) == companyId) {
                 taken.add(item);
             }
         }

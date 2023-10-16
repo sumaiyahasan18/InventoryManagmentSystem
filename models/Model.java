@@ -10,7 +10,8 @@ import java.util.ArrayList;
 public class Model {
     public static void storedata(String content, String dbPath) {
         try {
-            FileWriter fileWriter = new FileWriter(Company.dbpath, true);
+            FileWriter fileWriter = new FileWriter(
+                    "/home/shahriarkabir/Desktop/InventoryManagmentSystem/models/data/company.csv", true);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
             bufferedWriter.write(content);
