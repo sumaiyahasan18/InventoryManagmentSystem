@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class Product {
     private String name;
-    private int id;
+    int id;
     private int company_id;
     private int retail_price;
     private int wholesale_Price;
@@ -37,6 +37,14 @@ public class Product {
         this.wholesale_Price = wholesale_Price;
         this.wholesale_units = wholesale_units;
         Model.storedata(this + "", Product.dbPath);
+    }
+
+    public Boolean checkAvailability(int amount) {
+        return Stock.countAvailability(this.id, amount);
+    }
+
+    public void purchase(int customerId, int amount) {
+
     }
 
     public static Product findById(int _id) {
