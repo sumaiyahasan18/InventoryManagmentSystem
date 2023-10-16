@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Model {
     public static void storedata(String content, String dbPath) {
@@ -38,5 +39,29 @@ public class Model {
         }
         return lineCount;
 
+    }
+
+    public static ArrayList<String> getLines(String dbPath) {
+        ArrayList<String> lines = new ArrayList<String>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(dbPath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                lines.add(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return lines;
+    }
+
+    public static void writeData(String dbPath, ArrayList<String> lines) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(dbPath))) {
+            for (String line : lines) {
+                writer.write(line);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

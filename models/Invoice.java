@@ -11,7 +11,7 @@ public class Invoice {
     public static String dbPath = "./data/invoice.csv";
     public static int counter = Model.count(dbPath);
 
-    public Invoice(int id, int customer_id, int date) {
+    private Invoice(int id, int customer_id, int date) {
         this.id = id;
         this.customer_id = customer_id;
         this.date = date;

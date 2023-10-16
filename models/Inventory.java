@@ -11,7 +11,7 @@ public class Inventory {
     public static String dbPath = "./data/inventory.csv";
     public static int counter = Model.count(Inventory.dbPath);
 
-    public Inventory(int id, String location) {
+    private Inventory(int id, String location) {
         this.id = id;
         this.location = location;
     }

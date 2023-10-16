@@ -14,7 +14,7 @@ public class CustomerInfo {
         return this.id + "," + this.customer_name + "\n";
     }
 
-    public CustomerInfo(int _id, String customer_name) {
+    private CustomerInfo(int _id, String customer_name) {
         this.id = _id;
         this.customer_name = customer_name;
     }

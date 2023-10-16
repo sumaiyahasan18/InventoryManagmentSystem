@@ -14,7 +14,7 @@ public class Product {
     public static String dbPath = "./data/product.csv";
     public static int counter = Model.count(dbPath);
 
-    public Product(int id, String name, int company_id, int retail_price, int wholesale_Price, int wholesale_units) {
+    private Product(int id, String name, int company_id, int retail_price, int wholesale_Price, int wholesale_units) {
         this.name = name;
         this.id = id;
         this.company_id = company_id;

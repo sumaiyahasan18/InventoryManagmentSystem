@@ -20,7 +20,7 @@ public class Company {
         Company.companies.add(this);
     }
 
-    public Company(int id, String name, String location) {
+    private Company(int id, String name, String location) {
         this.name = name;
         this.id = id;
         this.location = location;
