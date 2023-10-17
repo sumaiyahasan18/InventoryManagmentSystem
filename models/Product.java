@@ -79,7 +79,7 @@ public class Product {
 
     public void purchase(int customerId, int amount, int invoiceId, String date) {
         Stock.updateStockOnPurchase(this.id, amount);
-        Sales_log.createAndStore(this.id, amount, date);
+        Sales_log.createAndStore(this.id, invoiceId, amount, date);
     }
 
     public static Product findById(int _id) {

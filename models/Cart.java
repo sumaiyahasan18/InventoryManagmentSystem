@@ -48,7 +48,10 @@ public class Cart {
                         break;
                     System.out.println("Product amount:");
                     int amount = scanner.nextInt();
-                    cart.addItem(productId, amount);
+                    if (!Stock.countAvailability(productId, amount)) {
+                        System.out.println("Not enough items in stock");
+                    } else
+                        cart.addItem(productId, amount);
                 }
 
             }

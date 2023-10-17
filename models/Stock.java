@@ -5,6 +5,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class Stock {
     private int product_id;
@@ -31,7 +34,19 @@ public class Stock {
 
         int units = scanner.nextInt();
         System.out.println("Inventory Id: ");
+        Product p = Product.findById(productId);
 
+        int companyId = p.company_id;
+
+        LocalDate currentDate = LocalDate.now();
+
+        Locale locale = Locale.US;
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", locale);
+
+        String localizedDate = currentDate.format(formatter);
+
+        Purchase_log.createAndStore(productId, companyId, units, p.wholesale_Price * units, localizedDate);
         int inventoryId = scanner.nextInt();
         Stock stock = Stock.find(productId, inventoryId);
         if (stock != null) {
@@ -115,6 +130,7 @@ public class Stock {
                 }
             }
         }
+        Model.writeData(dbPath, lines);
 
     }
 

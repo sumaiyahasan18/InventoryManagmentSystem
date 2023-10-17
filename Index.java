@@ -26,6 +26,7 @@ public class Index {
         System.out.println("10: Create user");
         System.out.println("11: View users");
         System.out.println("12 x: View invoices of user x");
+        System.out.println("13 x: View purchases under invoice x");
 
         int flag = scanner.nextInt();
         scanner.nextLine();
@@ -62,7 +63,7 @@ public class Index {
                 Stock.addToInventory(scanner);
                 break;
             case 8:
-                System.out.println("Creating Invent");
+                System.out.println("Creating Inventory");
                 System.out.println("Inventory location");
                 String inventoryLocation = scanner.nextLine();
                 Inventory i = new Inventory(inventoryLocation);
@@ -79,6 +80,9 @@ public class Index {
                 break;
             case 12:
                 Invoice.getInvoices(scanner);
+                break;
+            case 13:
+                Sales_log.getProductOfInvoice(scanner);
                 break;
             default:
                 break;
