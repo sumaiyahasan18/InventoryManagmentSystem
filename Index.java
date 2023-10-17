@@ -5,6 +5,7 @@ import models.Cart;
 import models.Company;
 import models.CustomerInfo;
 import models.Inventory;
+import models.Invoice;
 import models.Product;
 import models.Purchase_log;
 import models.Sales_log;
@@ -23,6 +24,9 @@ public class Index {
         System.out.println("8: Create inventory");
         System.out.println("9: Add products to cart");
         System.out.println("10: Create user");
+        System.out.println("11: View users");
+        System.out.println("12 x: View invoices of user x");
+
         int flag = scanner.nextInt();
         scanner.nextLine();
         switch (flag) {
@@ -69,6 +73,12 @@ public class Index {
                 break;
             case 10:
                 CustomerInfo.createFromInput(scanner);
+                break;
+            case 11:
+                CustomerInfo.viewAll();
+                break;
+            case 12:
+                Invoice.getInvoices(scanner);
                 break;
             default:
                 break;

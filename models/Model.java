@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Model {
-    public static String base = "/home/shahriarkabir/Desktop/InventoryManagmentSystem/models";
+    public static String base = System.getProperty("user.dir") + "/models";
 
     public static void storedata(String content, String dbPath) {
         try {

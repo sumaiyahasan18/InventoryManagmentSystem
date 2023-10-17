@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Invoice {
     public int id;
@@ -29,6 +30,20 @@ public class Invoice {
         Model.storedata(this + "", Invoice.dbPath);
     }
 
+    public static void getInvoices(Scanner scanner) {
+        System.out.println("User id:");
+        int userId = scanner.nextInt();
+        System.out.println("Purchases made by " + CustomerInfo.findById(userId).customer_name);
+        System.out.println("id\tdate");
+        ArrayList<String> lines = Model.getLines(dbPath);
+        for (String item : lines) {
+            String[] line = item.split(",");
+            if (Integer.parseInt(line[1]) == userId) {
+                System.out.println(Integer.parseInt(line[0]) + "\t" + line[2]);
+            }
+        }
+    }
+
     public static Invoice findById(int _id) {
         try {
             FileReader fileReader = new FileReader(Model.base + Company.dbPath);
@@ -52,18 +67,6 @@ public class Invoice {
             e.printStackTrace();
         }
         return null;
-    }
-
-    public static ArrayList<String> getPurchasedList(int invoiceId) {
-        ArrayList<String> lines = Model.getLines(dbPath);
-        ArrayList<String> taken = new ArrayList<String>();
-        for (String item : lines) {
-            String[] line = item.split(",");
-            if (Integer.parseInt(line[1]) == invoiceId) {
-                taken.add(item);
-            }
-        }
-        return taken;
     }
 
 }
